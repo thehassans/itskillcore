@@ -3,25 +3,146 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-[#f8faf9] text-slate-900 antialiased selection:bg-[#C9FA52] selection:text-[#063F38];
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Subtle architectural line grid for editorial depth */
+.bg-dot-subtle {
+  background-image: radial-gradient(rgba(6, 63, 56, 0.075) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-grid-subtle {
+  background-image:
+    linear-gradient(to right, rgba(6, 63, 56, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 63, 56, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-150 active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-[#063F38] text-white shadow-sm hover:bg-[#042b26];
+  }
+  .btn-accent {
+    @apply btn bg-[#C9FA52] text-[#063F38] font-bold shadow-sm hover:bg-[#bef542];
+  }
+  .btn-outline {
+    @apply btn border border-slate-200 bg-white text-[#063F38] hover:border-[#063F38]/40 hover:bg-[#F4FFE2]/70;
+  }
+  .btn-ghost {
+    @apply btn text-slate-600 hover:bg-[#F4FFE2]/70 hover:text-[#063F38];
+  }
+  .btn-danger {
+    @apply btn bg-rose-50 text-rose-700 border border-rose-200/70 hover:bg-rose-100;
+  }
+  .btn-success {
+    @apply btn bg-[#063F38] text-[#C9FA52] hover:bg-[#042b26];
+  }
+  .btn-sm {
+    @apply px-3.5 py-1.5 text-xs rounded-lg;
+  }
+  .input {
+    @apply w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#063F38] focus:ring-2 focus:ring-[#C9FA52]/60;
+  }
+  .label {
+    @apply mb-1.5 block text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500;
+  }
+  .card {
+    @apply rounded-xl border border-slate-200/90 bg-white shadow-[0_1px_2px_rgba(6,63,56,0.04)];
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-md px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-md border border-[#063F38]/15 bg-[#F4FFE2] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#063F38];
+  }
+  .h-display {
+    font-family: var(--font-head), sans-serif;
+    @apply font-extrabold tracking-[-0.03em];
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  .section-title {
+    font-family: var(--font-head), sans-serif;
+    @apply text-3xl font-extrabold tracking-[-0.025em] text-slate-900 md:text-4xl leading-[1.12];
+  }
+  .grad-text {
+    @apply text-[#063F38] font-extrabold;
+  }
+  .skeleton {
+    @apply animate-pulse rounded-lg bg-slate-200/70;
   }
 }
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes testimonialIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-element {
+  opacity: 0;
+  animation: fadeSlideIn 0.7s ease-out forwards;
+}
+
+.animate-slide-right {
+  opacity: 0;
+  animation: slideRightIn 0.8s ease-out forwards;
+}
+
+.animate-testimonial {
+  opacity: 0;
+  animation: testimonialIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+.animate-delay-600 { animation-delay: 600ms; }
+.animate-delay-700 { animation-delay: 700ms; }
+.animate-delay-800 { animation-delay: 800ms; }
+.animate-delay-900 { animation-delay: 900ms; }
+.animate-delay-1000 { animation-delay: 1000ms; }
+.animate-delay-1200 { animation-delay: 1200ms; }
+.animate-delay-1400 { animation-delay: 1400ms; }

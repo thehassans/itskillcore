@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: it-skillcore-lms
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    disk:
+      name: lms-uploads
+      mountPath: /app/public/uploads
+      sizeGB: 2
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SEED_KEY
+        generateValue: true
+      - key: NEXT_PUBLIC_URL
+        sync: false
